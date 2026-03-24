@@ -1,0 +1,13 @@
+<button class="btn btn-primary" [routerLink]="['/add-product']">Ajouter un produit</button>
+
+@for (product of products(); track product.id) {
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name }}</h5>
+      @if (auth.role() == "admin") {
+        <button class="btn btn-primary" [routerLink]="['/edit-product',product.id]">Editer</button>
+        <button class="btn btn-primary" (click)="onDeleteProduct(product.id)">Supprimer</button>
+      }
+    </div>
+  </div>
+}

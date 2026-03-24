@@ -1,0 +1,20 @@
+div {
+  display: flex;
+  align-items: center;
+
+  &.valid {
+    mat-icon {
+      color: rgb(20, 174, 17);
+    }
+  }
+
+  mat-icon {
+    color: rgb(174, 17, 17);
+  }
+
+
+
+  span {
+    margin-left: 0.5em;
+  }
+}

@@ -1,0 +1,24 @@
+<form class="custom-form" (ngSubmit)="onSubmitRegister()" [formGroup]="formulaire">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Ex. john@doe.com" formControlName="email" />
+
+    @if (formulaire.get('email')?.hasError('required')) {
+      <mat-error>L'email est obligatoire</mat-error>
+    } @else {
+      <mat-error>L'email est mal formé</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Mot de passe</mat-label>
+    <input matInput type="password" formControlName="password" (keyup)="checkPassword()"/>
+    <mat-error>Le mot de passe est obligatoire</mat-error>
+  </mat-form-field>
+
+  <app-check-input text="Doit contenir une majuscule" [checked]="hasUppercaseChar"></app-check-input>
+  <app-check-input text="Doit contenir une minuscule" [checked]="hasLowercaseChar"></app-check-input>
+  <app-check-input text="Doit posséder 4 caractères minimum" [checked]="hasMinimumLength"></app-check-input>
+
+  <button matButton="elevated" type="submit">Se connecter</button>
+</form>

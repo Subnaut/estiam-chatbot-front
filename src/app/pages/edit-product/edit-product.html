@@ -1,0 +1,8 @@
+<form [formGroup]="productForm" class="custom-form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Ex. Pomme" formControlName="name" />
+  </mat-form-field>
+
+  <button matButton="elevated" type="submit">Save</button>
+</form>

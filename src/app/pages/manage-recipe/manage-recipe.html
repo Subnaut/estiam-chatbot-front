@@ -1,0 +1,14 @@
+<button class="btn btn-primary" [routerLink]="['/add-recipe']">Ajouter une recette</button>
+
+@for (recipe of recipes(); track recipe.id) {
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ recipe.name }}</h5>
+      <p class="card-text">{{ recipe.description }}</p>
+      @if (auth.role() == "admin") {
+        <button class="btn btn-primary" [routerLink]="['/edit-recipe',recipe.id]">Editer</button>
+        <button class="btn btn-primary" (click)="onDeleteRecipe(recipe.id)">Supprimer</button>
+      }
+    </div>
+  </div>
+}

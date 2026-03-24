@@ -1,0 +1,14 @@
+<form [formGroup]="recipeForm" class="custom-form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Ex. Pizza" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Ex. Wonderfull recipe" formControlName="description">
+    </textarea>
+  </mat-form-field>
+
+  <button matButton="elevated" type="submit">Save</button>
+</form>
