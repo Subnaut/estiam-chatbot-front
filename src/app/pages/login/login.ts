@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Auth } from '../../services/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,7 @@ export class Login {
 
     if (this.formulaire.valid) {
       this.httpClient
-        .post('http://localhost:8080/login', this.formulaire.value, { responseType: 'text' })
+        .post(`${environment.apiUrl}/login`, this.formulaire.value, { responseType: 'text' })
         .subscribe({
           next: (reponse) => {
             this.notification.open('Connexion réussie', '', {

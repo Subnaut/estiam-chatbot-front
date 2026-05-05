@@ -4,6 +4,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { CheckInput } from '../../components/check-input/check-input';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,7 @@ export class Register {
 
     if (this.formulaire.valid && this.hasMinimumLength && this.hasLowercaseChar && this.hasUppercaseChar) {
       this.httpClient
-        .post('http://localhost:8080/register', this.formulaire.value, { responseType: 'text' })
+        .post(`${environment.apiUrl}/register`, this.formulaire.value, { responseType: 'text' })
         .subscribe((reponse) => console.log(reponse));
     }
   }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { Auth } from '../../services/auth';
+import { environment } from '../../../environments/environment';
 
 type Recipe = {
   id: number;
@@ -26,13 +27,13 @@ export class ManageRecipe {
   }
 
   refreshRecipes() {
-    this.httpClient.get<Recipe[]>('http://localhost:8080/recipe/list').subscribe((data) => {
+    this.httpClient.get<Recipe[]>(`${environment.apiUrl}/recipe/list`).subscribe((data) => {
       this.recipes.set(data);
     });
   }
 
   onDeleteRecipe(id: number) {
-    this.httpClient.delete(`http://localhost:8080/recipe/${id}`).subscribe(() => {
+    this.httpClient.delete(`${environment.apiUrl}/recipe/${id}`).subscribe(() => {
        this.refreshRecipes();
     });
   }

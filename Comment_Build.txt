@@ -1,0 +1,14 @@
+A REGARDER : ng generate environments
+
+Les environement sont la ou on met les URL pour l'API etc
+
+On utilise docker ou l'on va créer deux docker un qui seras brouillont et qui servira a faire le build de l'app Engular
+Et un deuxiemme qui seras notre docker avec notre front propre
+
+Les paramettre de nginx sont dans : nginx-custom.conf
+
+Commande pour DOCKER: 
+
+docker build -t estiam-front .
+
+docker run -p 81:80 estiam-front

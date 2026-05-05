@@ -5,6 +5,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-edit-product',
@@ -33,7 +34,7 @@ export class EditProduct {
         this.productId.set(params['id']);
 
         this.httpClient
-          .get(`http://localhost:8080/product/${this.productId()}`)
+          .get(`${environment.apiUrl}/product/${this.productId()}`)
           .subscribe((product: any) => {
             this.productForm.patchValue(product);
           });
@@ -47,7 +48,7 @@ export class EditProduct {
       // Si c'est une edition
       if (this.productId()) {
         this.httpClient
-          .put(`http://localhost:8080/product/${this.productId()}`, this.productForm.value)
+          .put(`${environment.apiUrl}/product/${this.productId()}`, this.productForm.value)
           .subscribe({
             next: () => alert('Product updated successfully!'),
             error: (err) => {
@@ -61,7 +62,7 @@ export class EditProduct {
       } else {
         // Si c'est une création
         this.httpClient
-          .post('http://localhost:8080/product', this.productForm.value)
+          .post(`${environment.apiUrl}/product`, this.productForm.value)
           .subscribe({
             next: () => alert('Product created successfully!'),
             error: (err) => {

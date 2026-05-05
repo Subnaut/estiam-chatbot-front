@@ -5,6 +5,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -33,7 +34,7 @@ export class EditRecipe {
         this.recipeId.set(params['id']);
 
         this.httpClient
-          .get(`http://localhost:8080/recipe/${this.recipeId()}`)
+          .get(`${environment.apiUrl}/recipe/${this.recipeId()}`)
           .subscribe((recipe: any) => {
             this.recipeForm.patchValue(recipe);
           });
@@ -47,7 +48,7 @@ export class EditRecipe {
       // Si c'est une edition
       if (this.recipeId()) {
         this.httpClient
-          .put(`http://localhost:8080/recipe/${this.recipeId()}`, this.recipeForm.value)
+          .put(`${environment.apiUrl}/recipe/${this.recipeId()}`, this.recipeForm.value)
           .subscribe({
             next: () => alert('Recipe updated successfully!'),
             error: (err) => {
@@ -61,7 +62,7 @@ export class EditRecipe {
       } else {
         // Si c'est une création
         this.httpClient
-          .post('http://localhost:8080/recipe', this.recipeForm.value)
+          .post(`${environment.apiUrl}/recipe`, this.recipeForm.value)
           .subscribe({
             next: () => alert('Recipe created successfully!'),
             error: (err) => {

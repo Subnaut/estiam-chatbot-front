@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { Auth } from '../../services/auth';
+import { environment } from '../../../environments/environment';
 
 type Product = {
   id: number;
@@ -25,13 +26,13 @@ export class ManageProduct {
     }
   
     refreshProduct() {
-      this.httpClient.get<Product[]>('http://localhost:8080/product/list').subscribe((data) => {
+      this.httpClient.get<Product[]>(`${environment.apiUrl}/product/list`).subscribe((data) => {
         this.products.set(data);
       });
     }
   
     onDeleteProduct(id: number) {
-      this.httpClient.delete(`http://localhost:8080/product/${id}`).subscribe(() => {
+      this.httpClient.delete(`${environment.apiUrl}/product/${id}`).subscribe(() => {
          this.refreshProduct();
       });
     }
